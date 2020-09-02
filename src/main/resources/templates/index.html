@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a th:href="@{/getElement}">excel要素読み取り</a><br>
+<a th:href="@{/getContent}">excel全要素読み取り</a><br>
+<a th:href="@{/download/excel/import}" target="_blank">excelダウンロード(HttpServletResponse,import)</a><br>
+<a th:href="@{/download/excel/create}" target="_blank">excelダウンロード(HttpServletResponse,create)</a><br>
+<a th:href="@{/download/excel/edit}" target="_blank">excelダウンロード(HttpServletResponse,edit)</a><br>
+</body>
+</html>
