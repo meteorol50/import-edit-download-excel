@@ -14,6 +14,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.model.ExcelView;
+
 @Controller
 @RequestMapping("/download")
 public class DownloadController {
@@ -22,7 +24,6 @@ public class DownloadController {
 	
 	@RequestMapping("/excel/import")
 	public void excelImport(HttpServletResponse response) throws Exception {
-		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		response.setHeader("Content-Disposition", "attachment; filename=\"sample.xlsx\"");
 		response.setCharacterEncoding("UTF-8");
 		Workbook workbook = WorkbookFactory.create(new FileInputStream(path));
@@ -62,7 +63,24 @@ public class DownloadController {
 		workbook.close();
 	}
 	
-	@RequestMapping("/excel2")
+	@RequestMapping("/excel/edit2")
+	public void excelEdit2(HttpServletResponse response) throws Exception {
+		response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		response.setHeader("Content-Disposition", "attachment; filename=\"sample.xlsx\"");
+		response.setCharacterEncoding("UTF-8");
+		Workbook workbook = WorkbookFactory.create(new FileInputStream(path));
+		
+		Sheet sheet = workbook.getSheet("Sheet1");
+		Row row = sheet.createRow(7);
+		Cell cell = row.createCell(7);
+		cell.setCellValue("テスト");
+		
+		OutputStream out = response.getOutputStream();
+		workbook.write(out);
+		workbook.close();
+	}
+	
+	@RequestMapping("/excel2/edit")
 	public ExcelView excel2(ExcelView excelView) throws Exception {
 		return excelView;
 	}
